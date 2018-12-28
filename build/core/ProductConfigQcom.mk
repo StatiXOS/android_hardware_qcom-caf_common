@@ -197,6 +197,19 @@ ifeq ($(call is-board-platform-in-list, $(UM_4_9_FAMILY) $(UM_4_14_FAMILY) $(UM_
     TARGET_USES_DRM_PP := true
 endif
 
+TARGET_ADDITIONAL_GRALLOC_10_USAGE_BITS ?= 0
+
+# Mark GRALLOC_USAGE_EXTERNAL_DISP as valid gralloc bit
+TARGET_ADDITIONAL_GRALLOC_10_USAGE_BITS += | (1 << 13)
+
+# Mark GRALLOC_USAGE_PRIVATE_WFD as valid gralloc bit
+TARGET_ADDITIONAL_GRALLOC_10_USAGE_BITS += | (1 << 21)
+
+# Mark GRALLOC_USAGE_PRIVATE_HEIF_VIDEO as valid gralloc bit on UM platforms that support it
+ifneq ($(filter $(UM_4_9_FAMILY) $(UM_4_14_FAMILY) $(UM_4_19_FAMILY) $(UM_5_4_FAMILY) $(UM_5_10_FAMILY) $(UM_5_15_FAMILY) $(UM_6_1_FAMILY),$(TARGET_BOARD_PLATFORM)),)
+    TARGET_ADDITIONAL_GRALLOC_10_USAGE_BITS += | (1 << 27)
+endif
+
 # Enable displayconfig
 ifeq ($(call is-board-platform-in-list, $(UM_5_10_FAMILY) $(UM_5_15_FAMILY) $(UM_6_1_FAMILY)),true)
     SOONG_CONFIG_qtidisplay_displayconfig_enabled := true
