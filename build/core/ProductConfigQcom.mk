@@ -228,6 +228,12 @@ ifneq ($(filter $(MASTER_SIDE_CP_TARGET_LIST),$(TARGET_BOARD_PLATFORM)),)
     SOONG_CONFIG_qtidisplay_master_side_cp := true
 endif
 
+# Use full QTI gralloc struct for GKI 2.0 targets
+ifneq ($(filter $(UM_5_10_FAMILY) $(UM_5_15_FAMILY) $(UM_6_1_FAMILY),$(TARGET_BOARD_PLATFORM)),)
+    TARGET_GRALLOC_HANDLE_HAS_CUSTOM_CONTENT_MD_RESERVED_SIZE ?= true
+    TARGET_GRALLOC_HANDLE_HAS_RESERVED_SIZE ?= true
+endif
+
 # Opt-in for old rmnet_data driver
 ifeq ($(filter $(UM_5_15_FAMILY) $(UM_6_1_FAMILY),$(TARGET_BOARD_PLATFORM)),)
     $(call soong_config_set,rmnetctl,old_rmnet_data,true)
