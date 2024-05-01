@@ -11,6 +11,7 @@ HOLI := holi #SM4350
 TARO := taro #SM8450
 PARROT := parrot
 KALAMA := kalama # SM8550
+CROW := crow
 PINEAPPLE := pineapple # SM8650
 
 # Board platforms lists to be used for
