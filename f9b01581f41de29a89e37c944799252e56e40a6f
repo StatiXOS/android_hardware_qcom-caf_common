@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8f6d2e61_8dfbc6ad",
+        "filename": "ProductConfigQcom.mk",
+        "patchSetId": 1
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-10-02T17:10:26Z",
+      "side": 1,
+      "message": "can you make sure the display hal isn\u0027t declaring anything new that we need to specify",
+      "range": {
+        "startLine": 85,
+        "startChar": 17,
+        "endLine": 85,
+        "endChar": 44
+      },
+      "revId": "f9b01581f41de29a89e37c944799252e56e40a6f",
+      "serverId": "039621b9-0c7c-40f3-867c-684f4bc911d6"
+    }
+  ]
+}
