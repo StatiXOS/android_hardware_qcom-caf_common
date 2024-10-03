@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "db44d2c9_11344159",
+        "filename": "ProductConfigQcom.mk",
+        "patchSetId": 4
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1000125
+      },
+      "writtenOn": "2024-10-03T02:33:37Z",
+      "side": 1,
+      "message": "Remove this line, I added it mistakenly.",
+      "revId": "879a7c3d5e63069eabe5f121118d259a16621064",
+      "serverId": "039621b9-0c7c-40f3-867c-684f4bc911d6"
+    }
+  ]
+}
