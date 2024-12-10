@@ -104,6 +104,11 @@ SOONG_CONFIG_qtidisplay_var1 ?= false
 SOONG_CONFIG_qtidisplay_var2 ?= false
 SOONG_CONFIG_qtidisplay_var3 ?= false
 
+# FOD
+ifeq ($(TARGET_USES_FOD_ZPOS),true)
+    SOONG_CONFIG_qtidisplay_udfps := true
+endif
+
 # UM platforms no longer need this set on O+
 ifneq ($(call is-board-platform-in-list, $(UM_PLATFORMS)),true)
     TARGET_USES_QCOM_BSP := true
