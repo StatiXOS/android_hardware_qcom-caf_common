@@ -93,6 +93,8 @@ SOONG_CONFIG_qtidisplay += \
     default \
     gralloc_handle_has_reserved_size \
     gralloc_handle_has_custom_content_md_reserved_size \
+    shift_horizontal \
+    shift_vertical \
     var1 \
     var2 \
     var3 \
@@ -111,6 +113,8 @@ SOONG_CONFIG_qtidisplay_gralloc4 ?= false
 SOONG_CONFIG_qtidisplay_udfps ?= false
 SOONG_CONFIG_qtidisplay_displayconfig_enabled ?= false
 SOONG_CONFIG_qtidisplay_default ?= true
+SOONG_CONFIG_qtidisplay_shift_horizontal ?= 0
+SOONG_CONFIG_qtidisplay_shift_vertical ?= 0
 SOONG_CONFIG_qtidisplay_gralloc_handle_has_reserved_size ?= false
 SOONG_CONFIG_qtidisplay_gralloc_handle_has_custom_content_md_reserved_size ?= false
 SOONG_CONFIG_qtidisplay_var1 ?= false
@@ -146,6 +150,19 @@ else ifeq ($(TARGET_USES_YCRCB_VENUS_CAMERA_PREVIEW),true)
     SOONG_CONFIG_qtidisplay_target_uses_ycrcb_venus_camera_preview := true
 endif
 
+ifneq ($(TARGET_DISPLAY_SHIFT_HORIZONTAL),)
+    SOONG_CONFIG_qtidisplay_shift_horizontal := $(TARGET_DISPLAY_SHIFT_HORIZONTAL)
+endif
+
+ifneq ($(TARGET_DISPLAY_SHIFT_VERTICAL),)
+    SOONG_CONFIG_qtidisplay_shift_vertical := $(TARGET_DISPLAY_SHIFT_VERTICAL)
+endif
+
+# FOD
+ifeq ($(TARGET_USES_FOD_ZPOS),true)
+    SOONG_CONFIG_qtidisplay_udfps := true
+endif
+
 # Add rmnetctl to soong config namespaces
 SOONG_CONFIG_NAMESPACES += rmnetctl
 
@@ -155,11 +172,6 @@ SOONG_CONFIG_rmnetctl += \
 
 # Set default values for rmnetctl config
 SOONG_CONFIG_rmnetctl_old_rmnet_data ?= false
-
-# FOD
-ifeq ($(TARGET_USES_FOD_ZPOS),true)
-    SOONG_CONFIG_qtidisplay_udfps := true
-endif
 
 # UM platforms no longer need this set on O+
 ifneq ($(call is-board-platform-in-list, $(UM_PLATFORMS)),true)
