@@ -93,6 +93,7 @@ SOONG_CONFIG_qtidisplay += \
     default \
     gralloc_handle_has_reserved_size \
     gralloc_handle_has_custom_content_md_reserved_size \
+    master_side_cp \
     shift_horizontal \
     shift_vertical \
     var1 \
@@ -118,6 +119,7 @@ SOONG_CONFIG_qtidisplay_shift_horizontal ?= 0
 SOONG_CONFIG_qtidisplay_shift_vertical ?= 0
 SOONG_CONFIG_qtidisplay_gralloc_handle_has_reserved_size ?= false
 SOONG_CONFIG_qtidisplay_gralloc_handle_has_custom_content_md_reserved_size ?= false
+SOONG_CONFIG_qtidisplay_master_side_cp ?= false
 SOONG_CONFIG_qtidisplay_var1 ?= false
 SOONG_CONFIG_qtidisplay_var2 ?= false
 SOONG_CONFIG_qtidisplay_var3 ?= false
@@ -216,8 +218,11 @@ ifneq ($(filter $(UM_4_14_FAMILY) $(UM_4_19_FAMILY) $(UM_5_4_FAMILY) $(UM_5_10_F
     SOONG_CONFIG_qtidisplay_gralloc4 := true
 endif
 
-# List of targets that use master side content protection
-MASTER_SIDE_CP_TARGET_LIST := msm8996 $(UM_4_4_FAMILY) $(UM_4_9_FAMILY) $(UM_4_14_FAMILY) $(UM_4_19_FAMILY) $(UM_5_4_FAMILY) $(UM_5_10_FAMILY) $(UM_5_15_FAMILY) $(UM_6_1_FAMILY)
+# Enable master side content protection on UM platforms that support it
+MASTER_SIDE_CP_TARGET_LIST := msm8996 $(UM_4_4_FAMILY) $(UM_4_9_FAMILY) $(UM_4_14_FAMILY) $(UM_4_19_FAMILY)
+ifneq ($(filter $(MASTER_SIDE_CP_TARGET_LIST),$(TARGET_BOARD_PLATFORM)),)
+    SOONG_CONFIG_qtidisplay_master_side_cp := true
+endif
 
 # Opt-in for old rmnet_data driver
 ifeq ($(filter $(UM_5_15_FAMILY) $(UM_6_1_FAMILY),$(TARGET_BOARD_PLATFORM)),)
