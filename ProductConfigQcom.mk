@@ -136,6 +136,9 @@ PRODUCT_SOONG_NAMESPACES += $(QCOM_SOONG_NAMESPACE)
 # Define kernel headers location
 PRODUCT_VENDOR_KERNEL_HEADERS += hardware/qcom-caf/$(QCOM_HARDWARE_VARIANT)/kernel-headers
 
+# Add bootctrl to PRODUCT_SOONG_NAMESPACES
+PRODUCT_SOONG_NAMESPACES += hardware/qcom-caf/bootctrl
+
 # Add display-commonsys-intf to PRODUCT_SOONG_NAMESPACES for QSSI supported platforms
 ifeq ($(call is-board-platform-in-list, $(QSSI_SUPPORTED_PLATFORMS)),true)
 PRODUCT_SOONG_NAMESPACES += \
