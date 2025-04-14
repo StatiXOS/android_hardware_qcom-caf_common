@@ -175,16 +175,6 @@ ifeq ($(TARGET_USES_FOD_ZPOS),true)
     SOONG_CONFIG_qtidisplay_udfps := true
 endif
 
-# Add rmnetctl to soong config namespaces
-SOONG_CONFIG_NAMESPACES += rmnetctl
-
-# Add supported variables to rmnetctl config
-SOONG_CONFIG_rmnetctl += \
-    old_rmnet_data
-
-# Set default values for rmnetctl config
-SOONG_CONFIG_rmnetctl_old_rmnet_data ?= false
-
 # UM platforms no longer need this set on O+
 ifneq ($(call is-board-platform-in-list, $(UM_PLATFORMS)),true)
     TARGET_USES_QCOM_BSP := true
@@ -240,7 +230,7 @@ endif
 
 # Opt-in for old rmnet_data driver
 ifeq ($(filter $(UM_5_15_FAMILY) $(UM_6_1_FAMILY),$(TARGET_BOARD_PLATFORM)),)
-    SOONG_CONFIG_rmnetctl_old_rmnet_data := true
+    $(call soong_config_set,rmnetctl,old_rmnet_data,true)
 endif
 
 # Use QTI gralloc UBWCP struct
