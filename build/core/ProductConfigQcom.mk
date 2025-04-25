@@ -102,6 +102,7 @@ SOONG_CONFIG_qtidisplay += \
     var2 \
     var3 \
     wide_color \
+    target_kernel_version \
     target_no_raw10_custom_format \
     target_uses_unaligned_nv21_zsl \
     target_uses_unaligned_ycrcb \
@@ -127,6 +128,7 @@ SOONG_CONFIG_qtidisplay_var1 ?= false
 SOONG_CONFIG_qtidisplay_var2 ?= false
 SOONG_CONFIG_qtidisplay_var3 ?= false
 SOONG_CONFIG_qtidisplay_wide_color ?= false
+SOONG_CONFIG_qtidisplay_target_kernel_version ?= 0
 SOONG_CONFIG_qtidisplay_target_no_raw10_custom_format ?= false
 SOONG_CONFIG_qtidisplay_target_uses_unaligned_nv21_zsl ?= false
 SOONG_CONFIG_qtidisplay_target_uses_unaligned_ycrcb ?= false
@@ -331,6 +333,11 @@ endif
 ifneq ($(filter $(UM_NO_GKI_PLATFORMS),$(PRODUCT_BOARD_PLATFORM)),)
 PRODUCT_SOONG_NAMESPACES += \
     vendor/qcom/opensource/commonsys/display
+endif
+
+# Pass kernel version to Display HAL
+ifneq ($(TARGET_KERNEL_VERSION),)
+    SOONG_CONFIG_qtidisplay_target_kernel_version := $(TARGET_KERNEL_VERSION)
 endif
 
 # Add data-ipa-cfg-mgr to PRODUCT_SOONG_NAMESPACES if needed
