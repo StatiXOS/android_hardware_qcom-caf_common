@@ -1,3 +1,5 @@
+include hardware/qcom-caf/common/build/core/pathmap.mk
+include hardware/qcom-caf/common/build/core/utils.mk
 include hardware/qcom-caf/common/build/core/vendor/qcom_boards.mk
 
 UM_4_4_FAMILY := msm8998 sdm660
