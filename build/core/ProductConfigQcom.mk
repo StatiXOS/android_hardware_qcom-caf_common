@@ -1,4 +1,4 @@
-include hardware/qcom-caf/common/qcom_boards.mk
+include hardware/qcom-caf/common/build/core/vendor/qcom_boards.mk
 
 UM_4_4_FAMILY := msm8998 sdm660
 UM_4_9_FAMILY := msm8917 msm8937 msm8952 msm8953 msm8996 sdm845
@@ -227,4 +227,4 @@ endif
 # Add wlan to PRODUCT_SOONG_NAMESPACES
 PRODUCT_SOONG_NAMESPACES += hardware/qcom-caf/wlan
 
-include hardware/qcom-caf/common/qcom_target.mk
+include hardware/qcom-caf/common/build/core/qcom_target.mk
