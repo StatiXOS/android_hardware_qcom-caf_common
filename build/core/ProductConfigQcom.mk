@@ -363,6 +363,13 @@ ifeq ($(USE_NQ_NFC),true)
     PRODUCT_SOONG_NAMESPACES += vendor/nxp/opensource
 endif
 
+# Add thermal HAL to PRODUCT_SOONG_NAMESPACES
+ifneq ($(filter $(UM_6_6_FAMILY),$(TARGET_BOARD_PLATFORM)),)
+    PRODUCT_SOONG_NAMESPACES += hardware/qcom-caf/thermal
+else
+    PRODUCT_SOONG_NAMESPACES += hardware/qcom-caf/thermal-legacy-um
+endif
+
 # Add wlan to PRODUCT_SOONG_NAMESPACES
 PRODUCT_SOONG_NAMESPACES += hardware/qcom-caf/wlan
 
