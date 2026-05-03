@@ -20,9 +20,6 @@ endif
 
 BOARD_USES_ADRENO := true
 
-# Vibrator HAL
-$(call soong_config_set, vibrator, vibratortargets, vibratoraidlV2target)
-
 # Add qtiaudio to soong config namespaces
 SOONG_CONFIG_NAMESPACES += qtiaudio
 
